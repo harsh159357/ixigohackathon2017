@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Take Me There</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="font_roboto_regular">Roboto_Regular.ttf</string>
 </resources>
