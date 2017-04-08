@@ -1,39 +1,41 @@
 package ixigo.invincible.takemethere.haimal;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import ixigo.invincible.takemethere.R;
+import ixigo.invincible.takemethere.harsh.activities.BaseActivity;
+import ixigo.invincible.takemethere.harsh.commons.EventObject;
 
-/**
- * Created by haimal on 08/04/17.
- */
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreen extends BaseActivity {
 
-    Context context;
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_splashscreen;
+    }
+
+    @Subscribe
+    @Override
+    public void onEvent(EventObject eventObject) {
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splashscreen);
-        initializeVars();
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(context, HomeScreen.class);
+                Intent intent = new Intent(SplashScreen.this, HomeScreen.class);
                 startActivity(intent);
             }
         }, 1000);
     }
 
-    private void initializeVars() {
-
-        context = this;
-    }
 }
