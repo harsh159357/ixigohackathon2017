@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ixigo.invincible.takemethere"
     android:installLocation="auto">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,8 +31,13 @@
 
         <activity
             android:name=".haimal.HomeScreen"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".haimal.ShowPredictions"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+
 
     </application>
 </manifest>

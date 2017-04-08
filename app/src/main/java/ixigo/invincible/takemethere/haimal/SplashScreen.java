@@ -34,6 +34,7 @@ public class SplashScreen extends BaseActivity {
             public void run() {
                 Intent intent = new Intent(SplashScreen.this, HomeScreen.class);
                 startActivity(intent);
+                finish();
             }
         }, 1000);
     }

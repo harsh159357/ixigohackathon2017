@@ -2,21 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:layout_margin="5dp"
+    android:background="@drawable/unpassbackground"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp">
 
     <TextView
         android:id="@+id/tv_city"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:text="delhi"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_city"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="New delhi, India" />
 
 </LinearLayout>
