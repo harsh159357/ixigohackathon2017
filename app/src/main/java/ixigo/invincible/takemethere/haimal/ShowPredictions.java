@@ -45,10 +45,8 @@ public class ShowPredictions extends BaseActivity {
                 City city = (City) adapterView.getItemAtPosition(position);
                 LogClass.displayLog(TAG, city.getCityName() + " clicked");
                 et_destination.setText(city.getCityName());
-
             }
         });
-
     }
 
     @Override

@@ -119,4 +119,14 @@
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_ask_my_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/unpassbackground"
+        android:src="@drawable/icon" />
 </FrameLayout>

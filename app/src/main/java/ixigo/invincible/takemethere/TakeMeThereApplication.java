@@ -4,6 +4,8 @@ import android.app.Application;
 import android.os.Handler;
 import android.util.Log;
 
+import com.facebook.FacebookSdk;
+
 import java.util.concurrent.TimeUnit;
 
 import ixigo.invincible.takemethere.harsh.retrofit.ApiInterface;
@@ -15,8 +17,8 @@ public class TakeMeThereApplication extends Application {
 
     private static final String TAG = TakeMeThereApplication.class.getName();
     private static TakeMeThereApplication _instance;
-    private ApiInterface apiInterface;
     private final Handler handler;
+    private ApiInterface apiInterface;
 
 
     public TakeMeThereApplication() {
@@ -36,6 +38,7 @@ public class TakeMeThereApplication extends Application {
         super.onCreate();
         Log.d(TAG, "Application onCreate()");
         initRetrofit();
+        FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
     public void initRetrofit() {

@@ -11,7 +11,6 @@ import ixigo.invincible.takemethere.R;
 import ixigo.invincible.takemethere.harsh.activities.BaseActivity;
 import ixigo.invincible.takemethere.harsh.models.eventbus.EventObject;
 
-
 public class SplashScreen extends BaseActivity {
 
     @Override
@@ -28,7 +27,6 @@ public class SplashScreen extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -38,5 +36,4 @@ public class SplashScreen extends BaseActivity {
             }
         }, 1000);
     }
-
 }
