@@ -31,6 +31,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextViewCustom textViewPlacesToVisit;
         TextViewCustom textViewThingsToDo;
         TextViewCustom textViewHotels;
+        TextViewCustom textViewBudget;
 
         LabListViewHolder(View view, RecommendationClickListener recommendationClickListener) {
             super(view);
@@ -39,6 +40,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             textViewPlacesToVisit = (TextViewCustom) view.findViewById(R.id.tv_places_to_visit);
             textViewThingsToDo = (TextViewCustom) view.findViewById(R.id.tv_things_to_do);
             textViewHotels = (TextViewCustom) view.findViewById(R.id.tv_hotels);
+            textViewBudget = (TextViewCustom) view.findViewById(R.id.tv_budget);
             imageView.setOnClickListener(this);
             textViewPlacesToVisit.setOnClickListener(this);
             textViewThingsToDo.setOnClickListener(this);
@@ -120,6 +122,11 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         drawableRequestBuilder.placeholder(R.drawable.placeholder);
         drawableRequestBuilder.into(labListViewHolder.imageView);
+        if (flightData.getType().equals(BUDGET_FLIGHT)) {
+            labListViewHolder.textViewBudget.setVisibility(View.VISIBLE);
+        } else {
+            labListViewHolder.textViewBudget.setVisibility(View.GONE);
+        }
     }
 
     @Override

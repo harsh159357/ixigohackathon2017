@@ -36,7 +36,7 @@ public class HomeScreen extends BaseActivity {
 
     @Subscribe
     @Override
-    public void onEvent(EventObject eventObject) {
+    public void onEvent(ixigo.invincible.takemethere.harsh.models.eventbus.EventObject eventObject) {
 
     }
 

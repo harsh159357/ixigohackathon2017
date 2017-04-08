@@ -1,6 +1,5 @@
 package ixigo.invincible.takemethere.harsh.activities;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,8 +13,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import ixigo.invincible.takemethere.R;
 import ixigo.invincible.takemethere.harsh.adapters.RecommendationAdapter;
-import ixigo.invincible.takemethere.harsh.commons.EventObject;
 import ixigo.invincible.takemethere.harsh.interfaces.RecommendationClickListener;
+import ixigo.invincible.takemethere.harsh.models.eventbus.EventObject;
+import ixigo.invincible.takemethere.harsh.models.recommendations.Data;
 import ixigo.invincible.takemethere.harsh.models.recommendations.FlightData;
 import ixigo.invincible.takemethere.harsh.requesters.RecommendationRequester;
 import ixigo.invincible.takemethere.harsh.util.BackgroundExecutor;
@@ -26,6 +26,7 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
     public RecyclerView recyclerViewRecommendation;
     private RecommendationAdapter recommendationAdapter;
     private ArrayList<Object> objectArrayList = new ArrayList<>();
+    private Data data;
 
     @Override
     protected int getLayout() {
@@ -34,21 +35,28 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
 
     @Subscribe
     @Override
-    public void onEvent(EventObject eventObject) {
-        switch (eventObject.getId()) {
-            case Events.GET_RECOMMENDATION_SUCCESSFUL:
-                Toast.makeText(this, "Get Recommendation SuccessFull", Toast.LENGTH_SHORT).show();
+    public void onEvent(final EventObject eventObject) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
                 dismissProgress();
-                break;
-            case Events.GET_RECOMMENDATION_FAILED:
-                Toast.makeText(this, "Get Recommendation Failed", Toast.LENGTH_SHORT).show();
-                dismissProgress();
-                break;
-            case Events.NO_INTERNET_CONNECTION:
-                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-                dismissProgress();
-                break;
-        }
+                switch (eventObject.getId()) {
+                    case Events.GET_RECOMMENDATION_SUCCESSFUL:
+                        Toast.makeText(ShowRecommendationsActivity.this, "Get Recommendation SuccessFull", Toast.LENGTH_SHORT).show();
+                        data = (Data) eventObject.getObject();
+                        objectArrayList.addAll(data.getFlight());
+                        objectArrayList.addAll(data.getBudget_flight());
+                        recommendationAdapter.notifyDataSetChanged();
+                        break;
+                    case Events.GET_RECOMMENDATION_FAILED:
+                        Toast.makeText(ShowRecommendationsActivity.this, "Get Recommendation Failed", Toast.LENGTH_SHORT).show();
+                        break;
+                    case Events.NO_INTERNET_CONNECTION:
+                        Toast.makeText(ShowRecommendationsActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
 
     @Override

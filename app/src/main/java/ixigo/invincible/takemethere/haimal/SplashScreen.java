@@ -9,7 +9,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import ixigo.invincible.takemethere.R;
 import ixigo.invincible.takemethere.harsh.activities.BaseActivity;
-import ixigo.invincible.takemethere.harsh.commons.EventObject;
+import ixigo.invincible.takemethere.harsh.models.eventbus.EventObject;
 
 
 public class SplashScreen extends BaseActivity {

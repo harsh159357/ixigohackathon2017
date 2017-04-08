@@ -14,8 +14,8 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.Vector;
 
 import butterknife.ButterKnife;
-import ixigo.invincible.takemethere.harsh.commons.EventObject;
 import ixigo.invincible.takemethere.harsh.interfaces.Constants;
+import ixigo.invincible.takemethere.harsh.models.eventbus.EventObject;
 
 //All activities in the app must extend this Activity common Task Like Event Bus and ButterKnife Initialization Done Here.
 public abstract class BaseActivity extends AppCompatActivity implements Constants {
