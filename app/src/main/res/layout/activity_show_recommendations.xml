@@ -7,6 +7,7 @@
     android:padding="4dp"
     tools:context="ixigo.invincible.takemethere.harsh.activities.ShowRecommendationsActivity">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_recommendation"
         android:layout_width="match_parent"

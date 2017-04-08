@@ -5,6 +5,8 @@
     android:installLocation="auto">
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TakeMeThereApplication"
         android:allowBackup="true"
@@ -28,7 +30,8 @@
 
         <activity
             android:name=".haimal.HomeScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
     </application>
 </manifest>

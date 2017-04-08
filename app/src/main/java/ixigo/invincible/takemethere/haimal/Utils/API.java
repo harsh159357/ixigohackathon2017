@@ -6,5 +6,7 @@ package ixigo.invincible.takemethere.haimal.Utils;
 
 public class API {
 
+    public static String AUTOCOMPLETE_API = "http://build2.ixigo.com/action/content/zeus/autocomplete?searchFor=tpAutoComplete&neCategories=City&query=";
+
 
 }
