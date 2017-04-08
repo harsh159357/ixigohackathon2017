@@ -15,7 +15,8 @@ import ixigo.invincible.takemethere.haimal.Utils.LogClass;
 import ixigo.invincible.takemethere.haimal.adapters.AutoCompleteAdapter;
 import ixigo.invincible.takemethere.haimal.modals.City;
 import ixigo.invincible.takemethere.harsh.activities.BaseActivity;
-import ixigo.invincible.takemethere.harsh.commons.EventObject;
+import ixigo.invincible.takemethere.harsh.models.eventbus.EventObject;
+
 
 /**
  * Created by haimal on 08/04/17.
@@ -54,6 +55,7 @@ public class ShowPredictions extends BaseActivity {
     protected int getLayout() {
         return R.layout.activity_showpredictions;
     }
+
 
     @Subscribe
     @Override
