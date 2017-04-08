@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:padding="4dp"
-    tools:context="ixigo.invincible.takemethere.harsh.activities.ShowRecommendationsActivity">
+    android:padding="4dp">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_recommendation"
+        android:id="@+id/recycler_view_things_to_do"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"

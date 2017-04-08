@@ -11,4 +11,6 @@ public interface Constants {
         int GET_RECOMMENDATION_SUCCESSFUL = 1;
         int GET_RECOMMENDATION_FAILED = 2;
     }
+
+    String BUDGET_FLIGHT = "BUDGET_FLIGHT";
 }
