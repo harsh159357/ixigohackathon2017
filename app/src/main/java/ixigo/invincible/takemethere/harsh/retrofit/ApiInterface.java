@@ -8,7 +8,7 @@ public interface ApiInterface {
 
     String BASE_URL = "http://build2.ixigo.com/api/v2/";
 
-    @POST("recommendations")
+    @POST("widgets/brand/inspire?product=1&apiKey=ixicode!2$")
     Call<Object> getRecommendations();
 
 }
