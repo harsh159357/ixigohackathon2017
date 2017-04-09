@@ -15,7 +15,13 @@ import ixigo.invincible.takemethere.harsh.retrofit.APIResponse;
 
 public class RecommendationRequester implements BaseRequester {
 
+    String source;
+
     public RecommendationRequester() {
+    }
+
+    public RecommendationRequester(String source) {
+        this.source = source;
     }
 
     @Override
@@ -30,7 +36,11 @@ public class RecommendationRequester implements BaseRequester {
                     flightData.setType(BUDGET_FLIGHT);
                 }
                 data.setBudget_flight(flightDatas);
-                EventBus.getDefault().post(new EventObject(Events.GET_RECOMMENDATION_SUCCESSFUL, recommendationResponse.getResponse().getData()));
+                if (source != null) {
+                    EventBus.getDefault().post(new EventObject(Events.GET_FACEBOOK_SUCCESS, recommendationResponse.getResponse().getData()));
+                } else {
+                    EventBus.getDefault().post(new EventObject(Events.GET_RECOMMENDATION_SUCCESSFUL, recommendationResponse.getResponse().getData()));
+                }
             } else {
                 EventBus.getDefault().post(new EventObject(Events.GET_RECOMMENDATION_FAILED, null));
             }

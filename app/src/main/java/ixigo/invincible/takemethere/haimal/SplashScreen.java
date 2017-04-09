@@ -9,6 +9,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import ixigo.invincible.takemethere.R;
 import ixigo.invincible.takemethere.harsh.activities.BaseActivity;
+import ixigo.invincible.takemethere.harsh.controllers.SharedPreferencesController;
 import ixigo.invincible.takemethere.harsh.models.eventbus.EventObject;
 
 public class SplashScreen extends BaseActivity {
@@ -27,13 +28,23 @@ public class SplashScreen extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreen.this, HomeScreen.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 1000);
+
+        if (SharedPreferencesController.getInstance(this).isUserLoggedIn())
+            gotoHomeScreen();
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    SharedPreferencesController.getInstance(SplashScreen.this).setUserLoggedIn(true);
+                    gotoHomeScreen();
+                }
+            }, 1000);
+        }
+    }
+
+    private void gotoHomeScreen() {
+        Intent intent = new Intent(SplashScreen.this, HomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 }

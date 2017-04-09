@@ -1,6 +1,8 @@
 package ixigo.invincible.takemethere.harsh.interfaces;
 
 public interface Constants {
+    String BUDGET_FLIGHT = "BUDGET_FLIGHT";
+
     interface ProgressDialogsToastsText {
         String PLEASE_WAIT = "Please Wait...";
         String LOADING_RECOMMENDATION = "Loading Recommendation...";
@@ -10,7 +12,6 @@ public interface Constants {
         int NO_INTERNET_CONNECTION = 0;
         int GET_RECOMMENDATION_SUCCESSFUL = 1;
         int GET_RECOMMENDATION_FAILED = 2;
+        int GET_FACEBOOK_SUCCESS = 20;
     }
-
-    String BUDGET_FLIGHT = "BUDGET_FLIGHT";
 }

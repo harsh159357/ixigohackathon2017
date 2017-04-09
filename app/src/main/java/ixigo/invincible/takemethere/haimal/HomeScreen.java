@@ -58,7 +58,7 @@ public class HomeScreen extends BaseActivity {
                 int counter = 1;
                 dismissProgress();
                 switch (eventObject.getId()) {
-                    case Events.GET_RECOMMENDATION_SUCCESSFUL:
+                    case Events.GET_FACEBOOK_SUCCESS:
                         //Toast.makeText(HomeScreen.this, "Get Recommendation SuccessFull", Toast.LENGTH_SHORT).show();
                         data = (Data) eventObject.getObject();
                         LogClass.displayLog(TAG, data.toString());
@@ -122,7 +122,7 @@ public class HomeScreen extends BaseActivity {
 
     @OnClick(R.id.fab_ask_my_friends)
     public void postOnFacebook() {
-        BackgroundExecutor.getInstance().execute(new RecommendationRequester());
+        BackgroundExecutor.getInstance().execute(new RecommendationRequester("facebook_button"));
         showProgress("Getting you some nice places to visit...");
     }
 
