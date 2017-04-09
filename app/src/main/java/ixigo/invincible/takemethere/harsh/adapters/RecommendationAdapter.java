@@ -25,18 +25,20 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private Context context;
     private RecommendationClickListener recommendationClickListener;
 
-    private class LabListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class RecommendationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         RecommendationClickListener recommendationClickListener;
         ImageView imageView;
+        TextViewCustom textViewName;
         TextViewCustom textViewPlacesToVisit;
         TextViewCustom textViewThingsToDo;
         TextViewCustom textViewHotels;
         TextViewCustom textViewBudget;
 
-        LabListViewHolder(View view, RecommendationClickListener recommendationClickListener) {
+        RecommendationViewHolder(View view, RecommendationClickListener recommendationClickListener) {
             super(view);
             this.recommendationClickListener = recommendationClickListener;
             imageView = (ImageView) view.findViewById(R.id.iv_recommendation);
+            textViewName = (TextViewCustom) view.findViewById(R.id.tv_name);
             textViewPlacesToVisit = (TextViewCustom) view.findViewById(R.id.tv_places_to_visit);
             textViewThingsToDo = (TextViewCustom) view.findViewById(R.id.tv_things_to_do);
             textViewHotels = (TextViewCustom) view.findViewById(R.id.tv_hotels);
@@ -81,11 +83,11 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         switch (viewType) {
             case VIEW_ITEM_DATA:
                 View dataView = inflater.inflate(R.layout.item_recommendation, viewGroup, false);
-                viewHolder = new LabListViewHolder(dataView, recommendationClickListener);
+                viewHolder = new RecommendationViewHolder(dataView, recommendationClickListener);
                 break;
             default:
                 View defaultView = inflater.inflate(R.layout.item_recommendation, viewGroup, false);
-                viewHolder = new LabListViewHolder(defaultView, recommendationClickListener);
+                viewHolder = new RecommendationViewHolder(defaultView, recommendationClickListener);
                 break;
         }
         return viewHolder;
@@ -103,17 +105,17 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             case VIEW_ITEM_DATA:
-                LabListViewHolder labListViewHolder = (LabListViewHolder) viewHolder;
-                configureLabListViewHolder(labListViewHolder, position);
+                RecommendationViewHolder recommendationViewHolder = (RecommendationViewHolder) viewHolder;
+                configureRecommendationViewHolder(recommendationViewHolder, position);
                 break;
             default:
-                LabListViewHolder defaultViewHolder = (LabListViewHolder) viewHolder;
-                configureLabListViewHolder(defaultViewHolder, position);
+                RecommendationViewHolder defaultViewHolder = (RecommendationViewHolder) viewHolder;
+                configureRecommendationViewHolder(defaultViewHolder, position);
                 break;
         }
     }
 
-    private void configureLabListViewHolder(LabListViewHolder labListViewHolder, int position) {
+    private void configureRecommendationViewHolder(RecommendationViewHolder recommendationViewHolder, int position) {
         FlightData flightData = (FlightData) objectArrayList.get(position);
         DrawableRequestBuilder drawableRequestBuilder = Glide.with(context)
                 .load(flightData.getImage())
@@ -121,11 +123,12 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 .animate(android.R.anim.fade_in);
 
         drawableRequestBuilder.placeholder(R.drawable.placeholder);
-        drawableRequestBuilder.into(labListViewHolder.imageView);
+        drawableRequestBuilder.into(recommendationViewHolder.imageView);
+        recommendationViewHolder.textViewName.setText(flightData.getStateName());
         if (flightData.getType().equals(BUDGET_FLIGHT)) {
-            labListViewHolder.textViewBudget.setVisibility(View.VISIBLE);
+            recommendationViewHolder.textViewBudget.setVisibility(View.VISIBLE);
         } else {
-            labListViewHolder.textViewBudget.setVisibility(View.GONE);
+            recommendationViewHolder.textViewBudget.setVisibility(View.GONE);
         }
     }
 

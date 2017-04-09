@@ -28,12 +28,14 @@ import ixigo.invincible.takemethere.harsh.util.BackgroundExecutor;
 
 public class ShowRecommendationsActivity extends BaseActivity implements RecommendationClickListener {
 
+    public static final String CLICK_TYPE = "CLICK_TYPE";
     @BindView(R.id.recycler_view_recommendation)
     public RecyclerView recyclerViewRecommendation;
     private RecommendationAdapter recommendationAdapter;
     private ArrayList<Object> objectArrayList = new ArrayList<>();
     private Data data;
     private String cityId = "";
+    private String clickType = "";
 
     @Override
     protected int getLayout() {
@@ -86,6 +88,7 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
                     case Events.GET_THINGS_TO_DO_SUCCESSFUL:
                         TakeMeThereApplication.getInstance().setThingsToDoData((ThingsToDoData) eventObject.getObject());
                         Intent intent = new Intent(ShowRecommendationsActivity.this, AnyOfTheseHotelsPlacesToVisitThingsToDoActivity.class);
+                        intent.putExtra(CLICK_TYPE,clickType);
                         startActivity(intent);
                         break;
                     case Events.GET_THINGS_TO_DO_FAILED:
@@ -113,6 +116,7 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                clickType = Types.PLACES_TO_VISIT;
                 getData(flightData);
             }
         });
@@ -123,6 +127,7 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                clickType = Types.PLACES_TO_VISIT;
                 getData(flightData);
             }
         });
@@ -133,6 +138,7 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                clickType = Types.THINGS_TO_DO;
                 getData(flightData);
             }
         });
@@ -143,6 +149,7 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                clickType = Types.HOTEL;
                 getData(flightData);
             }
         });

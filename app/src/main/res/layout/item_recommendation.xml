@@ -19,10 +19,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:textColor="@android:color/white"
         android:text="@string/budget_trip"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
         android:visibility="gone" />
+
+    <ixigo.invincible.takemethere.harsh.customview.TextViewCustom
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:background="#66000000"
+        android:text="@string/name"
+        android:textColor="@android:color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +50,7 @@
             android:layout_weight="1"
             android:background="@drawable/selector_recommendation"
             android:gravity="center"
-            android:text="Places To Visit"
+            android:text="@string/places_to_visit"
             android:textSize="16sp"
             app:font="@string/font_roboto_regular" />
 
@@ -51,7 +62,7 @@
             android:layout_weight="1"
             android:background="@drawable/selector_recommendation"
             android:gravity="center"
-            android:text="Hotels"
+            android:text="@string/hotels"
             android:textSize="16sp"
             app:font="@string/font_roboto_regular" />
 
@@ -63,7 +74,7 @@
             android:layout_weight="1"
             android:background="@drawable/selector_recommendation"
             android:gravity="center"
-            android:text="Things To Do"
+            android:text="@string/things_to_do"
             android:textSize="16sp"
             app:font="@string/font_roboto_regular" />
     </LinearLayout>

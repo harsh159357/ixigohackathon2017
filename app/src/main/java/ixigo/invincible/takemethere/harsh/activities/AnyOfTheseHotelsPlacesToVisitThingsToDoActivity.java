@@ -2,6 +2,7 @@ package ixigo.invincible.takemethere.harsh.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -41,12 +42,39 @@ public class AnyOfTheseHotelsPlacesToVisitThingsToDoActivity extends BaseActivit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tabLayout.addTab(tabLayout.newTab().setText(Types.PLACES_TO_VISIT));
-        tabLayout.addTab(tabLayout.newTab().setText(Types.HOTEL+"S"));
+        tabLayout.addTab(tabLayout.newTab().setText(Types.HOTEL + "S"));
         tabLayout.addTab(tabLayout.newTab().setText(Types.THINGS_TO_DO));
+
+
         Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
         customViewPager.setAdapter(adapter);
-        customViewPager.setCurrentItem(0);
-        customViewPager.setPagingEnabled(false);
+        if (getIntent().getStringExtra(ShowRecommendationsActivity.CLICK_TYPE).equals(Types.PLACES_TO_VISIT)) {
+            TabLayout.Tab tab = tabLayout.getTabAt(0);
+            tab.select();
+        } else if (getIntent().getStringExtra(ShowRecommendationsActivity.CLICK_TYPE).equals(Types.HOTEL)) {
+            TabLayout.Tab tab = tabLayout.getTabAt(1);
+            tab.select();
+        } else {
+            TabLayout.Tab tab = tabLayout.getTabAt(2);
+            tab.select();
+        }
+        customViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                TabLayout.Tab tab = tabLayout.getTabAt(position);
+                tab.select();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         tabLayout.setOnTabSelectedListener(this);
     }
 

@@ -6,4 +6,5 @@
     <string name="places_to_visit">Places To Visit</string>
     <string name="hotels">Hotels</string>
     <string name="things_to_do">Things To Do</string>
+    <string name="name">Name</string>
 </resources>
