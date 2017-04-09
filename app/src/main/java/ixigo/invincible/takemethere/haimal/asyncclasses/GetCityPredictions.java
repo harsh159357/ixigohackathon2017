@@ -22,11 +22,13 @@ public class GetCityPredictions {
 
     public static List<City> getCityPredictions(String constraints) {
 
-        List<City> cityList;
+        LogClass.displayLog(TAG, "inside GetCityPredictions");
+
         try {
+            LogClass.displayLog(TAG, constraints);
 
             if (constraints != null) {
-                cityList = new ArrayList<>();
+                List<City> cityList = new ArrayList<>();
                 MarshmallowClient client = new MarshmallowClient(API.AUTOCOMPLETE_API + constraints);
                 String jsonResponse = client.Execute(MarshmallowClient.RequestMethod.GET);
 
@@ -34,7 +36,9 @@ public class GetCityPredictions {
 
                 JSONArray jsonArray = new JSONArray(jsonResponse);
 
-                for (int i = 0; i > jsonArray.length(); i++) {
+                LogClass.displayLog(TAG, String.valueOf(jsonArray.length()));
+
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     City city = new City();
                     city.setCityName(jsonObject.getString("text"));

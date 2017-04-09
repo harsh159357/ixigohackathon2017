@@ -56,14 +56,15 @@
             android:layout_marginRight="6dp"
             android:background="#DDD" />
 
-
         <LinearLayout
+            android:id="@+id/layout_get_destination"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:transitionName="et_destination">
 
             <ImageView
                 android:id="@+id/iv_take_off_icon"
@@ -88,30 +89,8 @@
                     android:textColor="@color/offgrey"
                     android:textSize="17sp" />
 
-                <!--<ixigo.invincible.takemethere.haimal.Utils.DelayAutoCompleteTextView
-                    android:id="@+id/et_destination"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:hint="Destination"
-                    android:imeOptions="flagNoExtractUi|actionSearch"
-                    android:inputType="textCapWords"
-                    android:textColor="@color/offgrey"
-                    android:textColorHint="@color/offgrey" />
-
-                <ProgressBar
-                    android:id="@+id/pb_loading_indicator"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginRight="3dp"
-                    android:visibility="gone" />-->
             </FrameLayout>
-
-
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -140,4 +119,14 @@
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_ask_my_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/unpassbackground"
+        android:src="@drawable/icon" />
 </FrameLayout>

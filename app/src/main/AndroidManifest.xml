@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ixigo.invincible.takemethere"
     android:installLocation="auto">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:name=".TakeMeThereApplication"
@@ -15,6 +17,11 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
             android:name=".harsh.activities.ShowRecommendationsActivity"
             android:screenOrientation="portrait" />
@@ -30,8 +37,18 @@
 
         <activity
             android:name=".haimal.HomeScreen"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".haimal.ShowPredictions"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
     </application>
 

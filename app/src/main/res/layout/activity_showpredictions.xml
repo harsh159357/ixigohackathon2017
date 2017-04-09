@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/unpassbackground"
+    android:elevation="5dp"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:transitionName="et_destination">
 
+    <ImageView
+        android:id="@+id/iv_take_off_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/take_off_offgrey" />
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="10dp">
+
+        <ixigo.invincible.takemethere.haimal.Utils.DelayAutoCompleteTextView
+            android:id="@+id/et_destination"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:dropDownVerticalOffset="15dp"
+            android:focusable="true"
+            android:hint="Destination"
+            android:imeOptions="flagNoExtractUi|actionSearch"
+            android:inputType="textCapWords"
+            android:textColor="@color/offgrey"
+            android:textColorHint="@color/offgrey" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading_indicator"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:visibility="gone" />
+    </FrameLayout>
 </LinearLayout>
+
+

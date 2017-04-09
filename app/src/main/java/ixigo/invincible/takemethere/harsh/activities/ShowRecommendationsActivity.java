@@ -28,9 +28,9 @@ import ixigo.invincible.takemethere.harsh.util.BackgroundExecutor;
 
 public class ShowRecommendationsActivity extends BaseActivity implements RecommendationClickListener {
 
-    private RecommendationAdapter recommendationAdapter;
     @BindView(R.id.recycler_view_recommendation)
     public RecyclerView recyclerViewRecommendation;
+    private RecommendationAdapter recommendationAdapter;
     private ArrayList<Object> objectArrayList = new ArrayList<>();
     private Data data;
     private String cityId = "";
