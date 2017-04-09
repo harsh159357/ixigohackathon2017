@@ -6,6 +6,9 @@ import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
 
+import ixigo.invincible.takemethere.harsh.models.hotels.HotelsData;
+import ixigo.invincible.takemethere.harsh.models.placestovisit.PlacesToVisitData;
+import ixigo.invincible.takemethere.harsh.models.thingstodo.ThingsToDoData;
 import ixigo.invincible.takemethere.harsh.retrofit.ApiInterface;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -17,7 +20,33 @@ public class TakeMeThereApplication extends Application {
     private static TakeMeThereApplication _instance;
     private ApiInterface apiInterface;
     private final Handler handler;
+    private HotelsData hotelsData;
+    private ThingsToDoData thingsToDoData;
+    private PlacesToVisitData placesToVisitData;
 
+    public HotelsData getHotelsData() {
+        return hotelsData;
+    }
+
+    public void setHotelsData(HotelsData hotelsData) {
+        this.hotelsData = hotelsData;
+    }
+
+    public ThingsToDoData getThingsToDoData() {
+        return thingsToDoData;
+    }
+
+    public void setThingsToDoData(ThingsToDoData thingsToDoData) {
+        this.thingsToDoData = thingsToDoData;
+    }
+
+    public PlacesToVisitData getPlacesToVisitData() {
+        return placesToVisitData;
+    }
+
+    public void setPlacesToVisitData(PlacesToVisitData placesToVisitData) {
+        this.placesToVisitData = placesToVisitData;
+    }
 
     public TakeMeThereApplication() {
         _instance = this;

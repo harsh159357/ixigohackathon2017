@@ -138,4 +138,6 @@
             android:gravity="center"
             android:text="No Idea? Check out these cool places."
             android:textColor="@color/colorPrimaryDark"
-            android:textStyle="boeLayout>
+            android:textStyle="bold" />
+    </LinearLayout>
+</FrameLayout>

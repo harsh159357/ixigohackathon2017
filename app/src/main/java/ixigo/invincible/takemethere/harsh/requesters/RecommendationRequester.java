@@ -36,7 +36,7 @@ public class RecommendationRequester implements BaseRequester {
             }
 
         } else {
-            EventBus.getDefault().post(new EventObject(Events.NO_INTERNET_CONNECTION, 0));
+            EventBus.getDefault().post(new EventObject(Events.NO_INTERNET_CONNECTION, null));
         }
 
     }

@@ -1,5 +1,6 @@
 package ixigo.invincible.takemethere.harsh.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,11 +13,16 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import ixigo.invincible.takemethere.R;
+import ixigo.invincible.takemethere.TakeMeThereApplication;
 import ixigo.invincible.takemethere.harsh.adapters.RecommendationAdapter;
 import ixigo.invincible.takemethere.harsh.interfaces.RecommendationClickListener;
 import ixigo.invincible.takemethere.harsh.models.eventbus.EventObject;
+import ixigo.invincible.takemethere.harsh.models.hotels.HotelsData;
+import ixigo.invincible.takemethere.harsh.models.placestovisit.PlacesToVisitData;
 import ixigo.invincible.takemethere.harsh.models.recommendations.Data;
 import ixigo.invincible.takemethere.harsh.models.recommendations.FlightData;
+import ixigo.invincible.takemethere.harsh.models.thingstodo.ThingsToDoData;
+import ixigo.invincible.takemethere.harsh.requesters.AnyOfTheseThingsToDoPlacesToVisitHotelsRequester;
 import ixigo.invincible.takemethere.harsh.requesters.RecommendationRequester;
 import ixigo.invincible.takemethere.harsh.util.BackgroundExecutor;
 
@@ -27,6 +33,7 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
     public RecyclerView recyclerViewRecommendation;
     private ArrayList<Object> objectArrayList = new ArrayList<>();
     private Data data;
+    private String cityId = "";
 
     @Override
     protected int getLayout() {
@@ -54,6 +61,36 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
                     case Events.NO_INTERNET_CONNECTION:
                         Toast.makeText(ShowRecommendationsActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                         break;
+
+
+                    case Events.GET_PLACES_TO_VISIT_SUCCESSFUL:
+                        showProgress(ProgressDialogsToastsText.PLEASE_WAIT);
+                        TakeMeThereApplication.getInstance().setPlacesToVisitData((PlacesToVisitData) eventObject.getObject());
+                        BackgroundExecutor.getInstance().execute(new AnyOfTheseThingsToDoPlacesToVisitHotelsRequester(cityId, Types.HOTEL));
+                        break;
+                    case Events.GET_PLACES_TO_VISIT_FAILED:
+                        Toast.makeText(ShowRecommendationsActivity.this, "Get Places To Visit Failed", Toast.LENGTH_SHORT).show();
+                        break;
+
+
+                    case Events.GET_HOTELS_SUCCESSFUL:
+                        showProgress(ProgressDialogsToastsText.PLEASE_WAIT);
+                        TakeMeThereApplication.getInstance().setHotelsData((HotelsData) eventObject.getObject());
+                        BackgroundExecutor.getInstance().execute(new AnyOfTheseThingsToDoPlacesToVisitHotelsRequester(cityId, Types.THINGS_TO_DO));
+                        break;
+                    case Events.GET_HOTELS_FAILED:
+                        Toast.makeText(ShowRecommendationsActivity.this, "Get Hotels Failed", Toast.LENGTH_SHORT).show();
+                        break;
+
+
+                    case Events.GET_THINGS_TO_DO_SUCCESSFUL:
+                        TakeMeThereApplication.getInstance().setThingsToDoData((ThingsToDoData) eventObject.getObject());
+                        Intent intent = new Intent(ShowRecommendationsActivity.this, AnyOfTheseHotelsPlacesToVisitThingsToDoActivity.class);
+                        startActivity(intent);
+                        break;
+                    case Events.GET_THINGS_TO_DO_FAILED:
+                        Toast.makeText(ShowRecommendationsActivity.this, "Get Things To Do Failed", Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
         });
@@ -62,7 +99,6 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        objectArrayList = new ArrayList<>();
         recommendationAdapter = new RecommendationAdapter(objectArrayList, this, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerViewRecommendation.setLayoutManager(mLayoutManager);
@@ -73,42 +109,48 @@ public class ShowRecommendationsActivity extends BaseActivity implements Recomme
     }
 
     @Override
-    public void onImageViewClick(FlightData flightData) {
+    public void onImageViewClick(final FlightData flightData) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+                getData(flightData);
             }
         });
     }
 
     @Override
-    public void onPlacesToVisitClick(FlightData flightData) {
+    public void onPlacesToVisitClick(final FlightData flightData) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+                getData(flightData);
             }
         });
     }
 
     @Override
-    public void onThingsToDoClick(FlightData flightData) {
+    public void onThingsToDoClick(final FlightData flightData) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+                getData(flightData);
             }
         });
     }
 
     @Override
-    public void onHotelsClick(FlightData flightData) {
+    public void onHotelsClick(final FlightData flightData) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+                getData(flightData);
             }
         });
+    }
+
+    private void getData(FlightData flightData) {
+        cityId = flightData.getCityId();
+        showProgress(ProgressDialogsToastsText.PLEASE_WAIT);
+        BackgroundExecutor.getInstance().execute(new AnyOfTheseThingsToDoPlacesToVisitHotelsRequester(cityId, Types.PLACES_TO_VISIT));
     }
 }

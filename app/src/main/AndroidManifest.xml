@@ -34,4 +34,11 @@
             android:windowSoftInputMode="adjustPan" />
 
     </application>
+
+
+
+
+    <activity
+        android:name=".harsh.activities.AnyOfTheseHotelsPlacesToVisitThingsToDoActivity"
+        android:screenOrientation="portrait" />
 </manifest>
