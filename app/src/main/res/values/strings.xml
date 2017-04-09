@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Take Me There</string>
+    <string name="app_name">Lets Go</string>
     <string name="font_roboto_regular">Roboto_Regular.ttf</string>
     <string name="facebook_app_id">1877464272509269</string>
+    <string name="budget_trip">Budget Trip</string>
+    <string name="places_to_visit">Places To Visit</string>
+    <string name="hotels">Hotels</string>
+    <string name="things_to_do">Things To Do</string>
 </resources>

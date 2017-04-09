@@ -23,18 +23,14 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private ArrayList<Object> objectArrayList;
     private Context context;
 
-    private class LabListViewHolder extends RecyclerView.ViewHolder {
+    private class HotelViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextViewCustom textViewPlacesToVisit;
-        TextViewCustom textViewThingsToDo;
-        TextViewCustom textViewHotels;
+        TextViewCustom textViewHotelName;
 
-        LabListViewHolder(View view) {
+        HotelViewHolder(View view) {
             super(view);
             imageView = (ImageView) view.findViewById(R.id.iv_recommendation);
-            textViewPlacesToVisit = (TextViewCustom) view.findViewById(R.id.tv_places_to_visit);
-            textViewThingsToDo = (TextViewCustom) view.findViewById(R.id.tv_things_to_do);
-            textViewHotels = (TextViewCustom) view.findViewById(R.id.tv_hotels);
+            textViewHotelName = (TextViewCustom) view.findViewById(R.id.tv_hotel_name);
         }
     }
 
@@ -51,11 +47,11 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         switch (viewType) {
             case VIEW_ITEM_DATA:
                 View dataView = inflater.inflate(R.layout.item_hotels, viewGroup, false);
-                viewHolder = new LabListViewHolder(dataView);
+                viewHolder = new HotelViewHolder(dataView);
                 break;
             default:
                 View defaultView = inflater.inflate(R.layout.item_hotels, viewGroup, false);
-                viewHolder = new LabListViewHolder(defaultView);
+                viewHolder = new HotelViewHolder(defaultView);
                 break;
         }
         return viewHolder;
@@ -73,24 +69,25 @@ public class HotelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             case VIEW_ITEM_DATA:
-                LabListViewHolder labListViewHolder = (LabListViewHolder) viewHolder;
-                configureLabListViewHolder(labListViewHolder, position);
+                HotelViewHolder hotelViewHolder = (HotelViewHolder) viewHolder;
+                configureHotelistViewHolder(hotelViewHolder, position);
                 break;
             default:
-                LabListViewHolder defaultViewHolder = (LabListViewHolder) viewHolder;
-                configureLabListViewHolder(defaultViewHolder, position);
+                HotelViewHolder defaultViewHolder = (HotelViewHolder) viewHolder;
+                configureHotelistViewHolder(defaultViewHolder, position);
                 break;
         }
     }
 
-    private void configureLabListViewHolder(LabListViewHolder labListViewHolder, int position) {
+    private void configureHotelistViewHolder(HotelViewHolder hotelViewHolder, int position) {
         DataHotels dataHotels = (DataHotels) objectArrayList.get(position);
         DrawableRequestBuilder drawableRequestBuilder = Glide.with(context)
                 .load(dataHotels.getKeyImageUrl())
                 .fitCenter()
                 .animate(android.R.anim.fade_in);
         drawableRequestBuilder.placeholder(R.drawable.placeholder);
-        drawableRequestBuilder.into(labListViewHolder.imageView);
+        drawableRequestBuilder.into(hotelViewHolder.imageView);
+        hotelViewHolder.textViewHotelName.setText(dataHotels.getName());
     }
 
     @Override

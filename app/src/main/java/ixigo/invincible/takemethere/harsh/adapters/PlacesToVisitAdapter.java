@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
@@ -23,18 +22,12 @@ public class PlacesToVisitAdapter extends RecyclerView.Adapter<RecyclerView.View
     private ArrayList<Object> objectArrayList;
     private Context context;
 
-    private class LabListViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+    private class PlacesToVisitViewHolder extends RecyclerView.ViewHolder {
         TextViewCustom textViewPlacesToVisit;
-        TextViewCustom textViewThingsToDo;
-        TextViewCustom textViewHotels;
 
-        LabListViewHolder(View view) {
+        PlacesToVisitViewHolder(View view) {
             super(view);
-            imageView = (ImageView) view.findViewById(R.id.iv_recommendation);
             textViewPlacesToVisit = (TextViewCustom) view.findViewById(R.id.tv_places_to_visit);
-            textViewThingsToDo = (TextViewCustom) view.findViewById(R.id.tv_things_to_do);
-            textViewHotels = (TextViewCustom) view.findViewById(R.id.tv_hotels);
         }
 
     }
@@ -52,11 +45,11 @@ public class PlacesToVisitAdapter extends RecyclerView.Adapter<RecyclerView.View
         switch (viewType) {
             case VIEW_ITEM_DATA:
                 View dataView = inflater.inflate(R.layout.item_places_to_visit, viewGroup, false);
-                viewHolder = new LabListViewHolder(dataView);
+                viewHolder = new PlacesToVisitViewHolder(dataView);
                 break;
             default:
                 View defaultView = inflater.inflate(R.layout.item_places_to_visit, viewGroup, false);
-                viewHolder = new LabListViewHolder(defaultView);
+                viewHolder = new PlacesToVisitViewHolder(defaultView);
                 break;
         }
         return viewHolder;
@@ -74,25 +67,20 @@ public class PlacesToVisitAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             case VIEW_ITEM_DATA:
-                LabListViewHolder labListViewHolder = (LabListViewHolder) viewHolder;
-                configureLabListViewHolder(labListViewHolder, position);
+                PlacesToVisitViewHolder placesToVisitViewHolder = (PlacesToVisitViewHolder) viewHolder;
+                configurePlacesToVisitViewHolder(placesToVisitViewHolder, position);
                 break;
             default:
-                LabListViewHolder defaultViewHolder = (LabListViewHolder) viewHolder;
-                configureLabListViewHolder(defaultViewHolder, position);
+                PlacesToVisitViewHolder defaultViewHolder = (PlacesToVisitViewHolder) viewHolder;
+                configurePlacesToVisitViewHolder(defaultViewHolder, position);
                 break;
         }
     }
 
-    private void configureLabListViewHolder(LabListViewHolder labListViewHolder, int position) {
+    private void configurePlacesToVisitViewHolder(PlacesToVisitViewHolder placesToVisitViewHolder, int position) {
         DataPlacesToVisit dataPlacesToVisit = (DataPlacesToVisit) objectArrayList.get(position);
-        DrawableRequestBuilder drawableRequestBuilder = Glide.with(context)
-                .load(dataPlacesToVisit.getAddress())
-                .fitCenter()
-                .animate(android.R.anim.fade_in);
-
-        drawableRequestBuilder.placeholder(R.drawable.placeholder);
-        drawableRequestBuilder.into(labListViewHolder.imageView);
+        placesToVisitViewHolder.textViewPlacesToVisit.setText(dataPlacesToVisit.getAddress() + "\n" +
+                dataPlacesToVisit.getCityName() + "\n" + dataPlacesToVisit.getStateName());
     }
 
     @Override

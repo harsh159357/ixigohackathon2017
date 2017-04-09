@@ -50,12 +50,13 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <activity
+            android:name=".harsh.activities.AnyOfTheseHotelsPlacesToVisitThingsToDoActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 
 
 
-    <activity
-        android:name=".harsh.activities.AnyOfTheseHotelsPlacesToVisitThingsToDoActivity"
-        android:screenOrientation="portrait" />
 </manifest>

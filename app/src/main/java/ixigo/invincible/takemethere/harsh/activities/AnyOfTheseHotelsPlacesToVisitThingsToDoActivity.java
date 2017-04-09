@@ -41,7 +41,7 @@ public class AnyOfTheseHotelsPlacesToVisitThingsToDoActivity extends BaseActivit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tabLayout.addTab(tabLayout.newTab().setText(Types.PLACES_TO_VISIT));
-        tabLayout.addTab(tabLayout.newTab().setText(Types.HOTEL));
+        tabLayout.addTab(tabLayout.newTab().setText(Types.HOTEL+"S"));
         tabLayout.addTab(tabLayout.newTab().setText(Types.THINGS_TO_DO));
         Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
         customViewPager.setAdapter(adapter);

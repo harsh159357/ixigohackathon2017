@@ -21,6 +21,7 @@ public class TakeMeThereApplication extends Application {
     private static final String TAG = TakeMeThereApplication.class.getName();
     private static TakeMeThereApplication _instance;
     private final Handler handler;
+    private ApiInterface apiInterface;
     private HotelsData hotelsData;
     private ThingsToDoData thingsToDoData;
     private PlacesToVisitData placesToVisitData;

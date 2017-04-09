@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
@@ -23,18 +22,12 @@ public class ThingsToDoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private ArrayList<Object> objectArrayList;
     private Context context;
 
-    private class LabListViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextViewCustom textViewPlacesToVisit;
+    private class ThingsToDoViewHolder extends RecyclerView.ViewHolder {
         TextViewCustom textViewThingsToDo;
-        TextViewCustom textViewHotels;
 
-        LabListViewHolder(View view) {
+        ThingsToDoViewHolder(View view) {
             super(view);
-            imageView = (ImageView) view.findViewById(R.id.iv_recommendation);
-            textViewPlacesToVisit = (TextViewCustom) view.findViewById(R.id.tv_places_to_visit);
             textViewThingsToDo = (TextViewCustom) view.findViewById(R.id.tv_things_to_do);
-            textViewHotels = (TextViewCustom) view.findViewById(R.id.tv_hotels);
         }
 
     }
@@ -52,11 +45,11 @@ public class ThingsToDoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         switch (viewType) {
             case VIEW_ITEM_DATA:
                 View dataView = inflater.inflate(R.layout.item_things_to_do, viewGroup, false);
-                viewHolder = new LabListViewHolder(dataView);
+                viewHolder = new ThingsToDoViewHolder(dataView);
                 break;
             default:
                 View defaultView = inflater.inflate(R.layout.item_things_to_do, viewGroup, false);
-                viewHolder = new LabListViewHolder(defaultView);
+                viewHolder = new ThingsToDoViewHolder(defaultView);
                 break;
         }
         return viewHolder;
@@ -74,25 +67,20 @@ public class ThingsToDoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             case VIEW_ITEM_DATA:
-                LabListViewHolder labListViewHolder = (LabListViewHolder) viewHolder;
-                configureLabListViewHolder(labListViewHolder, position);
+                ThingsToDoViewHolder thingsToDoViewHolder = (ThingsToDoViewHolder) viewHolder;
+                configureLabListViewHolder(thingsToDoViewHolder, position);
                 break;
             default:
-                LabListViewHolder defaultViewHolder = (LabListViewHolder) viewHolder;
+                ThingsToDoViewHolder defaultViewHolder = (ThingsToDoViewHolder) viewHolder;
                 configureLabListViewHolder(defaultViewHolder, position);
                 break;
         }
     }
 
-    private void configureLabListViewHolder(LabListViewHolder labListViewHolder, int position) {
+    private void configureLabListViewHolder(ThingsToDoViewHolder thingsToDoViewHolder, int position) {
         DataThingsToDo dataThingsToDo = (DataThingsToDo) objectArrayList.get(position);
-        DrawableRequestBuilder drawableRequestBuilder = Glide.with(context)
-                .load(dataThingsToDo.getAddress())
-                .fitCenter()
-                .animate(android.R.anim.fade_in);
-
-        drawableRequestBuilder.placeholder(R.drawable.placeholder);
-        drawableRequestBuilder.into(labListViewHolder.imageView);
+        thingsToDoViewHolder.textViewThingsToDo.setText(dataThingsToDo.getAddress() + "\n" +
+                dataThingsToDo.getCityName() + "\n" + dataThingsToDo.getStateName());
     }
 
     @Override

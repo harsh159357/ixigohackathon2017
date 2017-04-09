@@ -22,7 +22,7 @@ public interface ApiInterface {
     String BASE_URL = "http://build2.ixigo.com/api/";
     String API_KEY = "ixicode!2$";
     String SKIP = "0";
-    String LIMIT = "10";
+    String LIMIT = "100";
 
     @GET("v2/widgets/brand/inspire?product=1&apiKey=" + API_KEY)
     Call<Data_> getRecommendations();
